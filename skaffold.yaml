@@ -1,8 +1,13 @@
-apiVersion: skaffold/v4beta6
-kind: config
+apiVersion: skaffold/v4beta3
+kind: Config
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
 build:
+  local:
+    push: false
   artifacts:
-    - image: colema18/client
+    - image: rallycoding/client-99
       context: client
       sync:
         manual:
@@ -10,50 +15,43 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: colema18/comments
+    - image: rallycoding/comments-84
       context: comments
       sync:
         manual:
-          - src: '*.js'
+          - src: "*.js"
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: colema18/event-bus
+    - image: rallycoding/event-bus-89
       context: event-bus
       sync:
         manual:
-          - src: '*.js'
+          - src: "*.js"
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: colema18/moderation
+    - image: rallycoding/moderation-84
       context: moderation
       sync:
         manual:
-          - src: '*.js'
+          - src: "*.js"
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: colema18/posts
+    - image: rallycoding/posts-100
       context: posts
       sync:
         manual:
-          - src: '*.js'
+          - src: "*.js"
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: colema18/query
+    - image: rallycoding/query-84
       context: query
       sync:
         manual:
-          - src: '*.js'
+          - src: "*.js"
             dest: .
       docker:
         dockerfile: Dockerfile
-  local:
-    push: false
-manifests:
-  rawYaml:
-    - ./infra/k8s/*
-deploy:
-  kubectl: {}
