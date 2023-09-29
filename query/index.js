@@ -33,6 +33,7 @@ const handleEvent = (type, data) => {
 };
 
 app.get('/posts', (req, res) => {
+    console.log('get posts called');
     res.send(posts);
 });
 
